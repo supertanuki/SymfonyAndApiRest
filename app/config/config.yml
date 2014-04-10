@@ -23,8 +23,8 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
-    serializer:
-        enabled: true
+#    serializer:
+#        enabled: true
 
 # Twig Configuration
 twig:
@@ -70,8 +70,8 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-services:
-   get_set_method_normalizer:
-      class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
-      tags:
-         - { name: serializer.normalizer }
+#services:
+#   get_set_method_normalizer:
+#      class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+#      tags:
+#         - { name: serializer.normalizer }

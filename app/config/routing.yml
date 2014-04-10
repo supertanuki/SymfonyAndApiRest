@@ -1,0 +1,3 @@
+acme_article:
+    resource: "@AcmeArticleBundle/Resources/config/routing.yml"
+

@@ -1,0 +1,4 @@
+acme_article:
+    resource: "@AcmeArticleBundle/Controller/ArticleController.php"
+    type:     annotation
+    prefix:   /articles
