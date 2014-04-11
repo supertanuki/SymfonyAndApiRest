@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {% if article %}
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.content }}</p>
+        <p><small>Writed by {{ article.author }} on {{ article.createdAt|date('m/d/Y h:i') }}</small></p>
+
+    {% else %}
+        <h1>Sorry, article not found</h1>
+    {% endif %}
+
+    <a href="{{ path('articles') }}">Return to articles list</a>
+{% endblock %}
