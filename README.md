@@ -29,11 +29,13 @@ Create a bundle Acme\MyApiBundle
 $ php app/console generate:bundle
 ```
 
-Your app/AppKernel.php should look like this :
+Your app/AppKernel.php should contains this :
 ```
+            ...
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Acme\MyApiBundle\AcmeMyApiBundle(),
+            ...
 ```
 
 Create an Entity Article in the console,
