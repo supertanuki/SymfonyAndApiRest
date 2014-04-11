@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\ArticleBundle\Entity;
+namespace Acme\MyApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Article
  *
  * @ORM\Table(name="article")
- * @ORM\Entity(repositoryClass="Acme\ArticleBundle\Entity\ArticleRepository")
+ * @ORM\Entity(repositoryClass="Acme\MyApiBundle\Entity\ArticleRepository")
  */
 class Article
 {

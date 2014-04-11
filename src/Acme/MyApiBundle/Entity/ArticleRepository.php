@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\ArticleBundle\Entity;
+namespace Acme\MyApiBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

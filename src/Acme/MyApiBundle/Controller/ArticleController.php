@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\ArticleBundle\Controller;
+namespace Acme\MyApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -15,7 +15,7 @@ class ArticleController extends Controller
     public function indexAction()
     {
         $articles = $this->getDoctrine()
-            ->getRepository('AcmeArticleBundle:Article')
+            ->getRepository('AcmeMyApiBundle:Article')
             ->findAll();
 
         return array('articles' => $articles);

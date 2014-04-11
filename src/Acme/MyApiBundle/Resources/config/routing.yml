@@ -1,0 +1,4 @@
+acme_my_api_main:
+    resource: "@AcmeMyApiBundle/Controller/ArticleController.php"
+    type:     annotation
+    prefix:   /articles

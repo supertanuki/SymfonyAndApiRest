@@ -1,7 +1,7 @@
-Symfony And Api Rest
+Symfony And Api Rest sample project
 ========================
 
-Demo project sample of Rest architecture in Symfony2 project
+Sample project of Rest architecture in Symfony2 + RestBundle
 
 ========================
 
@@ -20,14 +20,23 @@ $ php composer.phar update jms/serializer-bundle
 $ php composer.phar update friendsofsymfony/rest-bundle
 ```
 
-AppKernel :
+Create a bundle Acme\MyApiBundle
 ```
-            new FOS\RestBundle\FOSRestBundle(),
-            new Acme\ArticleBundle\AcmeArticleBundle(),
+$ php app/console generate:bundle
 ```
 
-Create a bundle Acme\ArticleBundle
-Create an Entity : Article(string $title, text $content, string $author, datetime $createdAt)
+Your app/AppKernel.php should look like this :
+```
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Acme\MyApiBundle\AcmeMyApiBundle(),
+```
+
+Create an Entity Article in the console :
+```
+$ php app/console generate:doctrine:entity
+```
+for example : Article(string $title, text $content, string $author, datetime $createdAt)
 
 Don't forget to update your database :
 ```
@@ -40,10 +49,11 @@ $ php app/console doctrine:query:sql "insert into article(title, content, author
 $ php app/console doctrine:query:sql "insert into article(title, content, author, created_at) values('My second article', 'Content is the web', 'Paloma', date_add(now(), interval 1 hour))"
 ```
 
+Now, some routing configuration :
 ```
 # app/config/routing.yml :
 acme_article:
-    resource: "@AcmeArticleBundle/Resources/config/routing.yml"
+    resource: "@AcmeMyApiBundle/Resources/config/routing.yml"
 ```
 
 ```
@@ -54,6 +64,34 @@ acme_article_main:
     prefix:   /articles
 ```
 
+To list all our usefull articles :
+```
+<?php
+
+namespace Acme\MyApiBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+class ArticleController extends Controller
+{
+    /**
+     * @Route("/list", name="articles")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $articles = $this->getDoctrine()
+            ->getRepository('AcmeMyApiBundle:Article')
+            ->findAll();
+
+        return array('articles' => $articles);
+    }
+}
+```
+
+and the corresponding view :
 ```
 # src/Acme/ArticleBundle/Ressources/views/Article/index.html.twig :
 {% extends "::base.html.twig" %}
@@ -67,3 +105,6 @@ acme_article_main:
     </ul>
 {% endblock %}
 ```
+
+Now check this articles list :
+http://yourlocalhost/app_dev.php/articles/list
