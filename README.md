@@ -9,7 +9,7 @@ First, you need a Symfony installation, please see http://symfony.com/download
 
 ## Creating this project step by step ##
 
-When your Symfony installation is ready to use, edit the /composer.json :
+When your Symfony installation is ready to use, edit the /composer.json:
 ```
     "require": {
         ...,
@@ -18,7 +18,7 @@ When your Symfony installation is ready to use, edit the /composer.json :
     },
 ```
 
-Then do :
+Then do:
 ```
 $ php composer.phar update jms/serializer-bundle
 $ php composer.phar update friendsofsymfony/rest-bundle
@@ -29,7 +29,7 @@ Create a bundle Acme\MyApiBundle
 $ php app/console generate:bundle
 ```
 
-Your app/AppKernel.php should contains this :
+Your app/AppKernel.php should contains this:
 ```
             ...
             new JMS\SerializerBundle\JMSSerializerBundle(),
@@ -44,33 +44,33 @@ for example : Article(string $title, text $content, string $author, datetime $cr
 $ php app/console generate:doctrine:entity
 ```
 
-Don't forget to update your database :
+Don't forget to update your database:
 ```
 $ php app/console doctrine:schema:update --force
 ```
 
-Populate your Article table with some fake articles. You can easily do this in the console :
+Populate your Article table with some fake articles. You can easily do this in the console:
 ```
 $ php app/console doctrine:query:sql "insert into article(title, content, author, created_at) values('hello world', 'how r u ?', 'John Doe', now())"
 $ php app/console doctrine:query:sql "insert into article(title, content, author, created_at) values('My second article', 'Content is the web', 'Paloma', date_add(now(), interval 1 hour))"
 ```
 
-Now, some routing configuration :
+Now, some routing configuration:
 ```
-# app/config/routing.yml :
+# app/config/routing.yml:
 acme_my_api:
     resource: "@AcmeMyApiBundle/Resources/config/routing.yml"
 ```
 
 ```
-# src/Acme/MyApiBundle/Ressources/config/routing.yml :
+# src/Acme/MyApiBundle/Ressources/config/routing.yml:
 acme_my_api_main:
     resource: "@AcmeMyApiBundle/Controller/ArticleController.php"
     type:     annotation
     prefix:   /articles
 ```
 
-To list all our usefull articles :
+To list all our usefull articles:
 ```
 <?php
 
@@ -97,7 +97,7 @@ class ArticleController extends Controller
 }
 ```
 
-and the corresponding view :
+and the corresponding view:
 ```
 # src/Acme/MyApiBundle/Ressources/views/Article/index.html.twig :
 {% extends "::base.html.twig" %}
@@ -112,7 +112,10 @@ and the corresponding view :
 {% endblock %}
 ```
 
-Now check this articles list in your favorite browser :
+Now check this articles list in your favorite browser:
 ```
 http://yourlocalhost/app_dev.php/articles/list
 ```
+
+## Sources ##
+* REST APIs with Symfony2: The Right Way (http://williamdurand.fr/2012/08/02/rest-apis-with-symfony2-the-right-way/)
