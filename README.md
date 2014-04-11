@@ -110,5 +110,7 @@ and the corresponding view :
 {% endblock %}
 ```
 
-Now check this articles list :
+Now check this articles list in your favorite browser :
+```
 http://yourlocalhost/app_dev.php/articles/list
+```
