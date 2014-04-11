@@ -20,4 +20,17 @@ class ArticleController extends Controller
 
         return array('articles' => $articles);
     }
+
+    /**
+     * @Route("/{id}", name="article")
+     * @Template()
+     */
+    public function getAction($id)
+    {
+        $article = $this->getDoctrine()
+            ->getRepository('AcmeMyApiBundle:Article')
+            ->find($id);
+
+        return array('article' => $article);
+    }
 }

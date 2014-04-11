@@ -118,5 +118,45 @@ Now check this articles list in your favorite browser:
 http://yourlocalhost/app_dev.php/articles/list
 ```
 
+Add our get function in ArticleController which allow to show an article:
+```
+    /**
+     * @Route("/{id}", name="article")
+     * @Template()
+     */
+    public function getAction($id)
+    {
+        $article = $this->getDoctrine()
+            ->getRepository('AcmeMyApiBundle:Article')
+            ->find($id);
+
+        return array('article' => $article);
+    }
+```
+
+Add the view :
+```
+# src/Acme/MyApiBundle/Ressources/views/Article/get.html.twig :
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    {% if article %}
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.content }}</p>
+        <p><small>Writed by {{ article.author }} on {{ article.createdAt|date('m/d/Y h:i') }}</small></p>
+
+    {% else %}
+        <h1>Sorry, article not found</h1>
+    {% endif %}
+
+    <a href="{{ path('articles') }}">Return to articles list</a>
+{% endblock %}
+```
+
+And link it in the index view :
+```
+<li><a href="{{ path('article', {'id': article.id}) }}">{{ article.title }}</a></li>
+```
+
 ## Sources ##
 * REST APIs with Symfony2: The Right Way (http://williamdurand.fr/2012/08/02/rest-apis-with-symfony2-the-right-way/)
