@@ -54,6 +54,7 @@ Populate your Article table with some fake articles. You can easily do this in t
 $ php app/console doctrine:query:sql "insert into article(title, content, author, created_at) values('hello world', 'how r u ?', 'John Doe', now())"
 $ php app/console doctrine:query:sql "insert into article(title, content, author, created_at) values('My second article', 'Content is the web', 'Paloma', date_add(now(), interval 1 hour))"
 ```
+You can insert more usefull fake articles if you want.
 
 Now, some routing configuration:
 ```
