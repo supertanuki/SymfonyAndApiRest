@@ -23,8 +23,6 @@ framework:
         handler_id:  ~
     fragments:       ~
     http_method_override: true
-#    serializer:
-#        enabled: true
 
 # Twig Configuration
 twig:
@@ -70,8 +68,14 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-#services:
-#   get_set_method_normalizer:
-#      class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
-#      tags:
-#         - { name: serializer.normalizer }
+# Sensio Framework Extra Configuration
+sensio_framework_extra:
+    view:
+        annotations: false
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'

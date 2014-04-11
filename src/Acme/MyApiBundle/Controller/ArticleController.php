@@ -2,19 +2,25 @@
 
 namespace Acme\MyApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Acme\MyApiBundle\Entity\Article;
 
-class ArticleController extends Controller
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\View\View;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+class ArticleController extends FosRestController
 {
     /**
-     * @Route("/list", name="articles")
-     * @Template()
+     * return all articles
+     * @return array
+     *
+     * @Rest\View()
      */
     public function indexAction()
     {
         $articles = $this->getDoctrine()
+            ->getManager()
             ->getRepository('AcmeMyApiBundle:Article')
             ->findAll();
 
@@ -22,15 +28,35 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="article")
-     * @Template()
+     * return an article by id
+     * @var integer $id Id of the article
+     * @return array
+     *
+     * @Rest\View()
      */
     public function getAction($id)
     {
-        $article = $this->getDoctrine()
-            ->getRepository('AcmeMyApiBundle:Article')
-            ->find($id);
+        $article = $this->getArticle($id);
 
         return array('article' => $article);
+    }
+
+
+    /**
+     * Get entity instance
+     * @var integer $id Id of the entity
+     * @return Article
+     */
+    protected function getArticle($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $article = $em->getRepository('AcmeMyApiBundle:Article')->find($id);
+
+        if (!$article instanceof Article) {
+            throw new NotFoundHttpException('Article not found');
+        }
+
+        return $article;
     }
 }

@@ -84,7 +84,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class ArticleController extends Controller
 {
     /**
-     * @Route("/list", name="articles")
+     * @Route("/all", name="articles")
      * @Template()
      */
     public function indexAction()
@@ -115,7 +115,7 @@ and the corresponding view:
 
 Now check this articles list in your favorite browser:
 ```
-http://yourlocalhost/app_dev.php/articles/list
+http://yourlocalhost/app_dev.php/articles/all
 ```
 
 Add our get function in ArticleController which allow to show an article:
@@ -158,5 +158,11 @@ And link it in the index view :
 <li><a href="{{ path('article', {'id': article.id}) }}">{{ article.title }}</a></li>
 ```
 
-## Sources ##
+Now check the article page:
+```
+http://yourlocalhost/app_dev.php/articles/1
+```
+
+## References ##
 * REST APIs with Symfony2: The Right Way (http://williamdurand.fr/2012/08/02/rest-apis-with-symfony2-the-right-way/)
+* Symfony2 & Rest with FOSRestBundle (http://npmasters.com/2012/11/25/Symfony2-Rest-FOSRestBundle.html)
