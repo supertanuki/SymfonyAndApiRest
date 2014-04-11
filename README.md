@@ -3,9 +3,13 @@ Symfony And Api Rest sample project
 
 Sample project of Rest architecture in Symfony2 + RestBundle
 
-========================
+## Requirements ##
 
-composer.json :
+First, you need a Symfony installation, please see http://symfony.com/download
+
+## Creating this project step by step ##
+
+When your Symfony installation is ready to use, edit the /composer.json :
 ```
     "require": {
         ...,
@@ -32,11 +36,11 @@ Your app/AppKernel.php should look like this :
             new Acme\MyApiBundle\AcmeMyApiBundle(),
 ```
 
-Create an Entity Article in the console :
+Create an Entity Article in the console,
+for example : Article(string $title, text $content, string $author, datetime $createdAt)
 ```
 $ php app/console generate:doctrine:entity
 ```
-for example : Article(string $title, text $content, string $author, datetime $createdAt)
 
 Don't forget to update your database :
 ```
@@ -52,14 +56,14 @@ $ php app/console doctrine:query:sql "insert into article(title, content, author
 Now, some routing configuration :
 ```
 # app/config/routing.yml :
-acme_article:
+acme_my_api:
     resource: "@AcmeMyApiBundle/Resources/config/routing.yml"
 ```
 
 ```
-# src/Acme/ArticleBundle/Ressources/config/routing.yml :
-acme_article_main:
-    resource: "@AcmeArticleBundle/Controller/ArticleController.php"
+# src/Acme/MyApiBundle/Ressources/config/routing.yml :
+acme_my_api_main:
+    resource: "@AcmeMyApiBundle/Controller/ArticleController.php"
     type:     annotation
     prefix:   /articles
 ```
@@ -93,7 +97,7 @@ class ArticleController extends Controller
 
 and the corresponding view :
 ```
-# src/Acme/ArticleBundle/Ressources/views/Article/index.html.twig :
+# src/Acme/MyApiBundle/Ressources/views/Article/index.html.twig :
 {% extends "::base.html.twig" %}
 
 {% block body %}
