@@ -159,6 +159,10 @@ Now check the article page:
 http://yourlocalhost/app_dev.php/articles/1
 ```
 
+```
+$ php app/console doctrine:generate:form AcmeMyApiBundle:Article --no-interaction
+```
+
 ## References ##
 * REST APIs with Symfony2: The Right Way (http://williamdurand.fr/2012/08/02/rest-apis-with-symfony2-the-right-way/)
 * Symfony2 & Rest with FOSRestBundle (http://npmasters.com/2012/11/25/Symfony2-Rest-FOSRestBundle.html)
