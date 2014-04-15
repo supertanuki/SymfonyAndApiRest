@@ -20,28 +20,39 @@ class ArticleController extends FOSRestController
 {
     /**
      * return all articles
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   statusCodes = {
+     *     200 = "Returned when successful"
+     *   }
+     * )
+     *
+     * @Annotations\View(templateVar="articles")
+     *
+     * @param Request               $request      the request object
+     *
      * @return array
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $articles = $this->getDoctrine()
+        return $this->getDoctrine()
             ->getManager()
             ->getRepository('AcmeMyApiBundle:Article')
             ->findAll();
-
-        return array('articles' => $articles);
     }
 
     /**
      * return an article by id
      * @var integer $id Id of the article
+     *
+     * @Annotations\View(templateVar="article")
+     *
      * @return array
      */
     public function getAction($id)
     {
-        $article = $this->getArticle($id);
-
-        return array('article' => $article);
+        return $this->getArticle($id);
     }
 
 
