@@ -4,18 +4,23 @@ namespace Acme\MyApiBundle\Controller;
 
 use Acme\MyApiBundle\Entity\Article;
 
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use FOS\RestBundle\View\View;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ArticleController extends FosRestController
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Util\Codes;
+use FOS\RestBundle\Controller\Annotations;
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\Request\ParamFetcherInterface;
+
+use Symfony\Component\Form\FormTypeInterface;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+
+class ArticleController extends FOSRestController
 {
     /**
      * return all articles
      * @return array
-     *
-     * @Rest\View()
      */
     public function indexAction()
     {
@@ -31,8 +36,6 @@ class ArticleController extends FosRestController
      * return an article by id
      * @var integer $id Id of the article
      * @return array
-     *
-     * @Rest\View()
      */
     public function getAction($id)
     {

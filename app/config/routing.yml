@@ -1,3 +1,5 @@
 acme_my_api:
+    type:     rest
+    prefix:   /api
     resource: "@AcmeMyApiBundle/Resources/config/routing.yml"
 

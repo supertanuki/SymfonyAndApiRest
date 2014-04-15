@@ -159,10 +159,17 @@ Now check the article page:
 http://yourlocalhost/app_dev.php/articles/1
 ```
 
+Create the form for Article entity:
 ```
 $ php app/console doctrine:generate:form AcmeMyApiBundle:Article --no-interaction
 ```
 
+Check the routes for production environment:
+```
+$ php app/console route:debug --env=prod
+```
+
 ## References ##
+* Symfony2 REST API: the best way (http://welcometothebundle.com/symfony2-rest-api-the-best-2013-way/)
 * REST APIs with Symfony2: The Right Way (http://williamdurand.fr/2012/08/02/rest-apis-with-symfony2-the-right-way/)
 * Symfony2 & Rest with FOSRestBundle (http://npmasters.com/2012/11/25/Symfony2-Rest-FOSRestBundle.html)
