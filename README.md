@@ -9,19 +9,11 @@ First, you need a Symfony installation, please see http://symfony.com/download
 
 ## Creating this project step by step ##
 
-When your Symfony installation is ready to use, edit the /composer.json:
+When your Symfony installation is ready to use, install the dependencies:
 ```
-    "require": {
-        ...,
-        "jms/serializer-bundle": "0.12.*",
-        "friendsofsymfony/rest-bundle": "1.3.*"
-    },
-```
-
-Then do:
-```
-$ php composer.phar update jms/serializer-bundle
-$ php composer.phar update friendsofsymfony/rest-bundle
+php composer.phar require "friendsofsymfony/rest-bundle" "@dev"
+php composer.phar require "jms/serializer-bundle" "@dev"
+php composer.phar require "nelmio/api-doc-bundle" "@dev"
 ```
 
 Create a bundle Acme\MyApiBundle
@@ -31,9 +23,13 @@ $ php app/console generate:bundle
 
 Your app/AppKernel.php should contains this:
 ```
+    public function registerBundles()
+    {
+        $bundles = array(
             ...
-            new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Acme\MyApiBundle\AcmeMyApiBundle(),
             ...
 ```
