@@ -173,3 +173,4 @@ $ php app/console route:debug --env=prod
 * Symfony2 REST API: the best way (http://welcometothebundle.com/symfony2-rest-api-the-best-2013-way/)
 * REST APIs with Symfony2: The Right Way (http://williamdurand.fr/2012/08/02/rest-apis-with-symfony2-the-right-way/)
 * Symfony2 & Rest with FOSRestBundle (http://npmasters.com/2012/11/25/Symfony2-Rest-FOSRestBundle.html)
+* Best Practices for Designing a Pragmatic RESTful API (http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
