@@ -34,6 +34,20 @@ Your app/AppKernel.php should contains this:
             ...
 ```
 
+app/config/config.yml :
+```
+sensio_framework_extra:
+    view:
+        annotations: false
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'
+```
+
 Create an Entity Article in the console,
 for example : Article(string $title, text $content, string $author, datetime $createdAt)
 ```
